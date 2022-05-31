@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<head>
+	<meta charset="utf-8">
+	<title>Game Manager</title>
+	<style>
+		body {
+			background-image: url('https://wallpaperaccess.com/full/1607459.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			height: 100%;
+			background-size: cover;
+			background-color: #383c44;
+
+		}
+
+		article {
+			background: linear-gradient(to right,
+					hsl(98 100% 62%),
+					hsl(204 100% 59%));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			text-align: center;
+		}
+
+		::after {
+			font-size: 1px;
+
+		}
+
+		.retotitle {
+			font-size: 50px;
+			line-height: 1.1;
+		}
+	</style>
+</head>
+
+<body>
+	<div layout:fragment="Mycontent"><br><br><br><br><br>
+		<article>
+			<div class="retotitle">
+				<h1><span>Welcome to Game🎮Manager.com</span></h1>
+			</div>
+		</article>
+		<p style="text-align: center; color:white">Game manager is a website that allows you to add and list diffrent
+			Games and Genres into a database
+		</p>
+		<article><a class="nav-link" th:href="@{ListeGames}">
+				<br><br><br>
+				<div class="subreto">🏠Home</div>
+			</a></article>
+</body>
+
+</html>

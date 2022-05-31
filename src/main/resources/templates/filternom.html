@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<head>
+	<meta charset="utf-8">
+	<title>List of Games</title>
+	<style>
+		body {
+			background-image: url('https://static.digit.in/default/985ee4fe71a337b2df939f435e889e95f3b3b5cd.jpeg');
+			background-position: center;
+			background-repeat: no-repeat;
+			height: 100%;
+			background-size: cover;
+			background-color: #383c44;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+			<div class="card text-white bg-dark mb-3">
+				<div class="card-header">List of Games (A..Z)</div>
+				<div class="card-body">
+					<table class="table table-striped table-dark">
+						<tr>
+							<th>ID</th>
+							<th>Title</th>
+							<th>Publisher</th>
+							<th>Price</th>
+							<th>Creation Date</th>
+							<th>Genre</th>
+							<th sec:authorize="hasRole('ADMIN')"></th>
+							<th sec:authorize="hasRole('ADMIN')"></th>
+						</tr>
+						<tr th:each="p:${Game}">
+							<td th:text="${p.idGame}"></td>
+							<td th:text="${p.nomGame}"></td>
+							<td th:text="${p.publisher}"></td>
+							<td th:text="${p.prixGame}"></td>
+							<td th:text="${p.dateCreation}"></td>
+							<td th:text="${p.genre.nomGen}"></td>
+							<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-success"
+									th:href="@{modifierGame(id=${p.idGame})}">Edit</a></td>
+							<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger"
+									onclick="return confirm('Etes-vous sûr ?')"
+									th:href="@{supprimerGame(id=${p.idGame},page=${currentPage},size=${size})}">Delete</a>
+							</td>
+
+						</tr>
+					</table>
+					<ul class="nav nav-pills">
+						<li th:each="page,status:${pages}"><a
+								th:class="${status.index==currentPage?'btn btn-primary':'btn' }"
+								th:href="@{chercherNom(page=${status.index}, size=${size} ) }"
+								th:text="${status.index }"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

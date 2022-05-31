@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout
+xmlns:sec=https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<head>
+	<meta charset="utf-8">
+	<title>Game Manager</title>
+	<style>
+		article {
+			background: linear-gradient(to right,
+					hsl(98 100% 62%),
+					hsl(204 100% 59%));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			text-align: center;
+		}
+
+		::after {
+			font-size: 1px;
+
+		}
+
+		.reto {
+			font-size: 30px;
+			line-height: 1.1;
+		}
+
+		.supreto {
+			font-size: 20px;
+			line-height: 1.1;
+		}
+
+		.dropdown-menu {
+			background: #383c44;
+		}
+
+		.dropdown-item {
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand -->
+
+
+		<article><a class="navbar-brand" th:href="@{ListeGames}">
+				<div class="reto">Game🎮Manager </div>
+			</a></article>
+
+		<!-- Links -->
+		<ul class="navbar-nav">
+
+			<li class="nav-item">
+				<article><a class="nav-link" th:href="@{ListeGames}">
+						<div class="subreto">🏠Home</div>
+					</a></article>
+			</li>
+			<!-- Dropdown -->
+			<li class="nav-item dropdown">
+				<article id="navbardrop" data-toggle="dropdown">
+					<div class="subreto"><a class="nav-link dropdown-toggle" href="#">
+							💿Games
+						</a></div>
+				</article>
+				<div class="dropdown-menu">
+					<article>
+						<div class="subreto"><a sec:authorize="hasRole('ADMIN')" class="dropdown-item"
+								th:href="@{showCreate}">➕Add Game</a></div>
+					</article>
+					<article>
+						<div class="subreto"><a class="dropdown-item" th:href="@{ListeGames}">📋List Games</a></div>
+					</article>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<article id="navbardrop" data-toggle="dropdown">
+					<div class="subreto"><a class="nav-link dropdown-toggle" href="#">
+							🎭Genres
+						</a></div>
+				</article>
+				<div class="dropdown-menu">
+					<article>
+						<div class="subreto"><a class="dropdown-item" sec:authorize="hasRole('ADMIN')"
+								th:href="@{CreateGenre}">➕Add
+								Genre</a></div>
+					</article>
+					<article>
+						<div class="subreto"><a class="dropdown-item" th:href="@{ListeGenres}">📋List Genres</a>
+						</div>
+					</article>
+				</div>
+			</li>
+						</li>
+						<li class="nav-item dropdown">
+				<article id="navbardrop" data-toggle="dropdown">
+					<div class="subreto"><a class="nav-link dropdown-toggle" href="#">
+							👤Users
+						</a></div>
+				</article>
+				<div class="dropdown-menu">
+					<article>
+						<div class="subreto"><a class="dropdown-item" sec:authorize="hasRole('ADMIN')"
+								th:href="@{CreateUser}">➕Add
+								User</a></div>
+					</article>
+					<article>
+						<div class="subreto"><a class="dropdown-item" th:href="@{ListeUsers}">📋List Users</a>
+						</div>
+					</article>
+				</div>
+			</li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+
+
+			<li style="margin-left: 20px; margin-top: 5px; margin-right:80px;" class="nav-item dropdown">
+
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+
+					<span sec:authentication="name"></span>
+				</a>
+				<div class="dropdown-menu">
+					<article>
+						<div class="subreto"><a sec:authorize="!isAuthenticated()" class="dropdown-item"
+								th:href="@{login}">🔓login</a></div>
+					</article>
+					<article>
+						<div class="subreto"><a sec:authorize="isAuthenticated()" class="dropdown-item"
+								th:href="@{logout}">🔒logout</a></div>
+					</article>
+					<article>
+						<div class="subreto"><a class="dropdown-item" href="#">👤Profile</a></div>
+					</article>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<section layout:fragment="Mycontent">
+	</section>
+</body>
+
+</html>

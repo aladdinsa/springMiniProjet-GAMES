@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<head>
+	<meta charset="utf-8">
+	<title>Formulaire des genre</title>
+	<style>
+		body {
+			background-image: url('https://images.hdqwalls.com/download/dark-clean-background-4k-1280x1024.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			height: 100%;
+			background-size: cover;
+			background-color: #383c44;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+			<div class="card text-white bg-secondary mb-3">
+				<div class="card-header" th:if="${mode=='new'}"> Add Genre </div>
+				<div class="card-header" th:if="${mode=='edit'}">Edit Genre</div>
+				<div class="card-body">
+					<form th:action="@{saveGenre}" method="post">
+						<div class="form-group">
+							<label class="control-label" hidden>ID :</label>
+							<input type="hidden" name="idGen" class="form-control" th:value="${genre.idGen}" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Name :</label>
+							<input type="text" name="nomGen" class="form-control" th:value="${genre.nomGen}" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Description :</label>
+							<input type="text" name="descriptionGen" class="form-control"
+								th:value="${genre.descriptionGen}" />
+						</div>
+						<br>
+						<div>
+							<button type="submit" class="btn btn-success" th:if="${mode=='new'}">Add</button>
+							<button type="submit" class="btn btn-success" th:if="${mode=='edit'}">Save</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
